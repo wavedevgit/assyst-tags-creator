@@ -40,6 +40,7 @@ jobs:
                       echo "Processing: $dir"
                       echo "========================================="
 
+                      npm i 
                       # Check if tsconfig.json exists and build if it does
                       if [ -f "tsconfig.json" ]; then
                         echo "📦 Found tsconfig.json, building with tsc..."
@@ -51,7 +52,7 @@ jobs:
                         fi
                         echo "✅ Build successful"
                       fi
-                      
+
                       # Check npm version in package.json
                       PACKAGE_VERSION=$(grep '"version"' package.json | head -1 | sed -E 's/.*"version": "([^"]+)".*/\1/')
                       PACKAGE_NAME=$(grep '"name"' package.json | head -1 | sed -E 's/.*"name": "([^"]+)".*/\1/')
