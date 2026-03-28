@@ -1,0 +1,16 @@
+{
+    "name": "assyst-eslint-plugins",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "keywords": [
+        "assyst"
+    ],
+    "author": "wavedevgit",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
+    },
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyst-eslint-plugins#readme"
+}

@@ -1,0 +1,86 @@
+name: Publish Packages
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Find and publish packages
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  #!/bin/bash
+
+                  npm ci
+                  # Find all directories with package.json
+                  for dir in */; do
+                    if [ -f "$dir/package.json" ]; then
+                      cd "$dir"
+
+                      echo "========================================="
+                      echo "Processing: $dir"
+                      echo "========================================="
+
+                      # Check if tsconfig.json exists and build if it does
+                      if [ -f "tsconfig.json" ]; then
+                        echo "📦 Found tsconfig.json, building with tsc..."
+                        npx -y typescript tsc
+                        if [ $? -ne 0 ]; then
+                          echo "❌ Build failed for $dir"
+                          cd ..
+                          continue
+                        fi
+                        echo "✅ Build successful"
+                      fi
+                      
+                      # Check npm version in package.json
+                      PACKAGE_VERSION=$(grep '"version"' package.json | head -1 | sed -E 's/.*"version": "([^"]+)".*/\1/')
+                      PACKAGE_NAME=$(grep '"name"' package.json | head -1 | sed -E 's/.*"name": "([^"]+)".*/\1/')
+
+                      echo "📝 Package: $PACKAGE_NAME@$PACKAGE_VERSION"
+
+                      # Check if version already exists on npm
+                      npm view "$PACKAGE_NAME@$PACKAGE_VERSION" > /dev/null 2>&1
+                      if [ $? -eq 0 ]; then
+                        echo "⏭️  Version $PACKAGE_VERSION already published, skipping..."
+                      else
+                        echo "🚀 Publishing $PACKAGE_NAME@$PACKAGE_VERSION..."
+                        npm publish
+                        if [ $? -eq 0 ]; then
+                          echo "✅ Published: $PACKAGE_NAME@$PACKAGE_VERSION"
+                        else
+                          echo "❌ Failed to publish: $PACKAGE_NAME"
+                        fi
+                      fi
+                      
+                      cd ..
+                      echo ""
+                    fi
+                  done
+
+                  echo "========================================="
+                  echo "Publish workflow completed!"
+                  echo "========================================="
+
+            - name: Summary
+              if: always()
+              run: |
+                  echo "✨ Workflow finished"

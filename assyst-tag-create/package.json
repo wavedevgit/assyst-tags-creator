@@ -1,0 +1,20 @@
+{
+    "name": "create-assyst-tag",
+    "version": "1.0.0",
+    "description": "Easy to use creator for assyst tags",
+    "main": "index.js",
+    "bin": {
+        "create-assyst-tag": "./dist/main.js"
+    },
+    "keywords": [],
+    "author": "wavedevgit",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
+    },
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyt-create#readme",
+    "dependencies": {
+        "inquirer": "^13.3.2"
+    }
+}

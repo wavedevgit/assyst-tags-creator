@@ -1,0 +1,21 @@
+{
+    "name": "assyst-tags-creator",
+    "version": "1.0.0",
+    "description": "Awesome utility to make assyst javascript tags with error handling",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wavedevgit/assyst-tags-creator.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
+    },
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator#readme"
+}

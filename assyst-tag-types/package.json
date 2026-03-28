@@ -1,0 +1,20 @@
+{
+    "name": "assyst-types",
+    "version": "1.0.0",
+    "description": "Types for assyst javascript tags execution context",
+    "types": "index.d.ts",
+    "keywords": [
+        "assyst",
+        "discord",
+        "tags",
+        "javascript",
+        "execution"
+    ],
+    "author": "wavedevgit",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
+    },
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyst-types#readme"
+}
