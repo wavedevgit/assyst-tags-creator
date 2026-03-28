@@ -40,7 +40,7 @@ jobs:
                       echo "Processing: $dir"
                       echo "========================================="
 
-                      npm i 
+                      npm i
                       # Check if tsconfig.json exists and build if it does
                       if [ -f "tsconfig.json" ]; then
                         echo "📦 Found tsconfig.json, building with tsc..."
@@ -65,7 +65,7 @@ jobs:
                         echo "⏭️  Version $PACKAGE_VERSION already published, skipping..."
                       else
                         echo "🚀 Publishing $PACKAGE_NAME@$PACKAGE_VERSION..."
-                        npm publish
+                        npm publish --access public --provenance
                         if [ $? -eq 0 ]; then
                           echo "✅ Published: $PACKAGE_NAME@$PACKAGE_VERSION"
                         else
