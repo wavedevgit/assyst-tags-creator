@@ -22,7 +22,8 @@ jobs:
               with:
                   node-version: '24'
                   registry-url: 'https://registry.npmjs.org'
-
+                  scope: '@wavedevgit'
+                  always-auth: true
             - name: Find and publish packages
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
