@@ -54,6 +54,9 @@ function buildWithRspack(inputPath: string, outputPath: string): Promise<void> {
                 ],
             },
 
+            optimization: {
+                sideEffects: false,
+            },
             resolve: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
@@ -80,8 +83,7 @@ async function main() {
     try {
         await buildWithRspack(inputPath, outputPath);
 
-        const content = await fs.readFile(outputPath, 'utf-8');
-        await fs.writeFile(outputPath, content + '\n//# sourceURL=tag.js\n');
+        await fs.appendFile(outputPath, '\n//# sourceURL=tag.js\n');
 
         console.log(`Build completed: ${outputPath}`);
     } catch (err) {
