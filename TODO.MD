@@ -1,0 +1,5 @@
+-   [x] publish assyst-tag-types to npm
+-   [x] publish assyst-eslint-plugins to npm
+-   [ ] finish and publish assyst-tag-builder
+-   [ ] finish and publish assyst-tag-templates
+-   [ ] finish and publish assyt-tag-create

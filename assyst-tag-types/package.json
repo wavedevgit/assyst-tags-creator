@@ -1,5 +1,5 @@
 {
-    "name": "assyst-types",
+    "name": "@happyenderman/assyst-tag-types",
     "version": "1.0.0",
     "description": "Types for assyst javascript tags execution context",
     "types": "index.d.ts",
@@ -16,5 +16,8 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
-    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyst-types#readme"
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-types#readme",
+    "publishConfig": {
+        "access": "public"
+    }
 }

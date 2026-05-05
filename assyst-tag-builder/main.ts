@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
+import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import esbuild from 'esbuild';
+import { rspack } from '@rspack/core';
 
 const execAsync = promisify(exec);
 
@@ -13,43 +14,82 @@ async function isTsProject() {
         return false;
     }
 }
+function buildWithRspack(inputPath: string, outputPath: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const compiler = rspack({
+            entry: inputPath,
+
+            output: {
+                filename: path.basename(outputPath),
+                path: path.resolve(path.dirname(outputPath)),
+            },
+
+            target: 'node',
+            mode: 'production',
+
+            devtool: 'inline-source-map',
+
+            module: {
+                rules: [
+                    {
+                        test: /\.(js|jsx|ts|tsx)$/,
+                        exclude: /node_modules/,
+                        use: {
+                            loader: 'builtin:swc-loader',
+                            options: {
+                                jsc: {
+                                    parser: {
+                                        syntax: 'typescript', // or 'ecmascript' if no TS
+                                        jsx: true,
+                                    },
+
+                                    transform: {
+                                        react: {
+                                            runtime: 'automatic',
+
+                                            importSource:
+                                                '@happyenderman/assyst-tag-templates',
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                ],
+            },
+
+            resolve: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            },
+        });
+
+        compiler.run((err, stats) => {
+            if (err) return reject(err);
+
+            if (stats?.hasErrors()) {
+                return reject(new Error(stats.toString('errors-only')));
+            }
+
+            resolve();
+        });
+    });
+}
 
 async function main() {
-    const shouldBuildTs = await isTsProject();
+    const isTs = await isTsProject();
 
-    if (shouldBuildTs) {
-        console.log('Building TypeScript source...');
-        try {
-            await fs.rm('./dist', { force: true, recursive: true });
-        } catch {}
-
-        try {
-            await execAsync('npx tsc');
-            console.log('TypeScript build completed');
-        } catch (err) {
-            console.error('TypeScript build failed:', err.stderr || err);
-            process.exit(1);
-        }
-    }
-
-    const inputPath = shouldBuildTs ? './dist/index.js' : './src/index.js';
+    const inputPath = isTs ? './src/index.ts' : './src/index.js';
     const outputPath = './dist/tag.js';
 
     try {
-        await esbuild.build({
-            entryPoints: [inputPath],
-            bundle: true,
-            outfile: outputPath,
-            platform: 'node',
-            format: 'cjs',
-            sourcemap: false,
-        });
+        await buildWithRspack(inputPath, outputPath);
 
-        await fs.appendFile(outputPath, '\n//# sourceURL=tag.js\n');
+        const content = await fs.readFile(outputPath, 'utf-8');
+        await fs.writeFile(outputPath, content + '\n//# sourceURL=tag.js\n');
 
         console.log(`Build completed: ${outputPath}`);
     } catch (err) {
-        console.error('esbuild failed:', err);
+        console.error('rspack failed:', err);
         process.exit(1);
     }
 }

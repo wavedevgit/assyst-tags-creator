@@ -35,27 +35,4 @@ const fetchLimitPlugin = {
     },
 };
 
-export default [
-    {
-        ignores: ['node_modules/**'],
-    },
-    {
-        languageOptions: {
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-            globals: {
-                fetch: 'readonly',
-                console: 'readonly',
-                process: 'readonly',
-            },
-        },
-        rules: {
-            'no-console': 'error',
-            'no-unused-vars': 'warn',
-            'plugin/fetch-limit': 'error',
-        },
-        plugins: {
-            plugin: fetchLimitPlugin,
-        },
-    },
-];
+export default fetchLimitPlugin;

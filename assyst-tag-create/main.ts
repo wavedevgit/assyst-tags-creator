@@ -12,7 +12,7 @@ import util from 'util';
 const execAsync = util.promisify(exec);
 
 async function main() {
-    const { projectName, description, language, initGit } =
+    const { projectName, description, language, initGit, useTagTemplates } =
         await inquirer.prompt([
             {
                 type: 'input',
@@ -39,6 +39,13 @@ async function main() {
                 message: 'Do you want to initialize a Git repository?',
                 default: true,
             },
+            {
+                type: 'confirm',
+                name: 'useTagTemplates',
+                message:
+                    "Do you want to use tag templates, this means you'll get full access to assyst tag syntax, instead of just js tag?",
+                default: false,
+            },
         ]);
 
     const projectPath = path.resolve(process.cwd(), projectName);
@@ -59,7 +66,7 @@ async function main() {
     pkgData.name = projectName;
     pkgData.description = description || '';
     pkgData.type = 'module';
-    pkgData.scripts.build = 'npx assyst-tag-builder';
+    pkgData.scripts.build = 'assyst-tag-builder';
     pkgData.main = 'src/index.' + language === 'TypeScript' ? '.ts' : '.js';
     await fs.writeFile(pkgPath, JSON.stringify(pkgData, null, 2));
 
@@ -86,20 +93,26 @@ async function main() {
     }
 
     const eslintrc = {
-        root: true,
-        parser:
-            language === 'TypeScript' ? '@typescript-eslint/parser' : undefined,
-        plugins: ['@wavedevgit/assyst-eslint-plugins'],
-        extends: [
-            'eslint:recommended',
-            language === 'TypeScript'
-                ? 'plugin:@wavedevgit/assyst-eslint-plugins/recommended'
-                : '',
-        ].filter(Boolean),
         env: {
             node: true,
             es2021: true,
         },
+
+        parser:
+            language === 'TypeScript' ? '@typescript-eslint/parser' : undefined,
+
+        plugins: [
+            '@happyenderman/assyst-eslint-plugins',
+            ...(language === 'TypeScript' ? ['@typescript-eslint'] : []),
+        ],
+
+        extends: [
+            'eslint:recommended',
+            'plugin:@happyenderman/assyst-eslint-plugins/recommended',
+            ...(language === 'TypeScript'
+                ? ['plugin:@typescript-eslint/recommended']
+                : []),
+        ],
     };
     await fs.writeFile(
         path.join(projectPath, '.eslintrc.json'),
@@ -108,10 +121,12 @@ async function main() {
 
     console.log('Installing dependencies...');
     const deps = [
-        '@wavedevgit/assyst-types',
-        '@wavedevgit/assyst-eslint-plugins',
-        'eslint',
-    ];
+        '@happyenderman/assyst-types',
+        '@happyenderman/assyst-eslint-plugins',
+        '@ħappyenderman/assyst-tag-builder',
+        useTagTemplates ? '@happyenderman/assyst-tag-templates' : '',
+        '@rspack/core',
+    ].filter(Boolean);
     if (language === 'TypeScript')
         deps.push('typescript', '@typescript-eslint/parser', '@types/node');
     await execAsync(`npm install --save-dev ${deps.join(' ')}`, {

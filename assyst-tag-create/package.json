@@ -1,5 +1,5 @@
 {
-    "name": "create-assyst-tag",
+    "name": "@happyenderman/create-assyst-tag",
     "version": "1.0.0",
     "description": "Easy to use creator for assyst tags",
     "main": "index.js",
@@ -13,7 +13,7 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
-    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyt-create#readme",
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-create#readme",
     "dependencies": {
         "inquirer": "^13.3.2"
     }

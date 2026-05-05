@@ -1,0 +1,14 @@
+{
+    "name": "@happyenderman/assyst-tag-templates",
+    "version": "1.0.0",
+    "description": "Javascript library to generate valid assyst tags.",
+    "main": "index.js",
+    "keywords": [],
+    "author": "wavedevgit",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
+    },
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-templates#readme"
+}

@@ -1,5 +1,5 @@
 {
-    "name": "assyst-tag-builder",
+    "name": "@happyenderman/assyst-tag-builder",
     "version": "1.0.0",
     "description": "Builder for assyst tags (uses esbuild)",
     "main": "index.js",
@@ -13,8 +13,8 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
-    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyt-create#readme",
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-builder#readme",
     "dependencies": {
-        "inquirer": "^13.3.2"
+        "@rspack/core": "^2.0.1"
     }
 }

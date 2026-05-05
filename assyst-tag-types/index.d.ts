@@ -16,7 +16,7 @@ declare global {
     /**
      * This variable is shared between guilds, you can only add/modify/delete to it
      * you cant remove it/change its type
-     * Its always an objecte
+     * Its always an object
      */
     const ctx: Record<any, any>;
     const client: DiscordClient;

@@ -17,5 +17,8 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
-    "homepage": "https://github.com/wavedevgit/assyst-tags-creator#readme"
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator#readme",
+    "devDependencies": {
+        "@types/node": "^25.6.0"
+    }
 }

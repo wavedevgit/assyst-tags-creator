@@ -1,5 +1,5 @@
 {
-    "name": "assyst-eslint-plugins",
+    "name": "@happyenderman/assyst-eslint-plugins",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,5 +12,8 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
-    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/assyst-eslint-plugins#readme"
+    "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-eslint-plugins#readme",
+    "publishConfig": {
+        "access": "public"
+    }
 }
