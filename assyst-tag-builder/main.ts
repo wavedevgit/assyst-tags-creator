@@ -56,6 +56,8 @@ function buildWithRspack(inputPath: string, outputPath: string): Promise<void> {
 
             optimization: {
                 sideEffects: false,
+                usedExports: false,
+                minimize: false,
             },
             resolve: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
