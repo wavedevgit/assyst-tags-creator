@@ -18,7 +18,7 @@ async function main() {
                 type: 'input',
                 name: 'projectName',
                 message: 'Enter your project name:',
-                validate: (input) =>
+                validate: (input: string) =>
                     input ? true : 'Project name cannot be empty.',
             },
             {

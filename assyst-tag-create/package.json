@@ -1,10 +1,13 @@
 {
-    "name": "@happyenderman/create-assyst-tag",
-    "version": "1.0.0",
+    "name": "create-assyst-tag",
+    "version": "1.0.2",
     "description": "Easy to use creator for assyst tags",
     "main": "index.js",
     "bin": {
         "create-assyst-tag": "./dist/main.js"
+    },
+    "scripts": {
+        "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js"
     },
     "keywords": [],
     "author": "wavedevgit",
@@ -15,9 +18,13 @@
     },
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-create#readme",
     "dependencies": {
-        "inquirer": "^13.3.2"
+        "inquirer": "^13.3.2",
+        "typescript": "^6.0.3"
     },
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "@types/node": "^25.6.0"
     }
 }
