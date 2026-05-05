@@ -102,6 +102,7 @@ export default [
         ignores: ['node_modules/**', 'dist/**'],
     },
     {
+        files: ['**/*.{ts,tsx}', '**/*.{js,jsx}'],
         languageOptions: {
             ecmaVersion: 'latest',
             sourceType: 'module',
@@ -118,7 +119,18 @@ export default [
         },
         rules: {
             'no-console': 'off',
-            'fetch-limit/fetch-limit': ['error', { max: 5 }],
+            'no-restricted-syntax': [
+                'error',
+                {
+                    selector: "MemberExpression[object.name='console']",
+                    message:
+                        'Console logs are useless, as assyst evals javascript, use return value instead',
+                },
+            ],
+            '@happyenderman/assyst-eslint-plugins/fetch-limit': [
+                'error',
+                { max: 5 },
+            ],
         },
     },
 ];`;
@@ -139,7 +151,12 @@ export default [
     ].filter(Boolean) as string[];
 
     if (language === 'TypeScript') {
-        deps.push('typescript', '@typescript-eslint/parser', '@types/node');
+        deps.push(
+            'typescript',
+            '@typescript-eslint/parser',
+            '@types/node',
+            '@typescript-eslint/eslint-plugin',
+        );
     }
 
     await execAsync(`npm install --save-dev ${deps.join(' ')}`, {

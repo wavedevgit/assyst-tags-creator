@@ -6,6 +6,18 @@ const fetchLimitPlugin = {
                 docs: {
                     description: 'Limit fetch calls to a maximum of 5 per file',
                 },
+                schema: [
+                    {
+                        type: 'object',
+                        properties: {
+                            max: {
+                                type: 'integer',
+                                minimum: 1,
+                            },
+                        },
+                        additionalProperties: false,
+                    },
+                ],
             },
             create(context) {
                 const options = context.options[0] || {};
