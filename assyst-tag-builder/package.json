@@ -16,7 +16,7 @@
     },
     "scripts": {
         "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js",
-        "publish": "npm run build && npm run publish"
+        "publish": "npm run build && npm publish"
     },
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-builder#readme",
     "dependencies": {
