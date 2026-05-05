@@ -123,7 +123,7 @@ async function main() {
     const deps = [
         '@happyenderman/assyst-types',
         '@happyenderman/assyst-eslint-plugins',
-        '@ħappyenderman/assyst-tag-builder',
+        '@happyenderman/assyst-tag-builder',
         useTagTemplates ? '@happyenderman/assyst-tag-templates' : '',
         '@rspack/core',
     ].filter(Boolean);
