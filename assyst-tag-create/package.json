@@ -1,6 +1,6 @@
 {
     "name": "create-assyst-tag",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Easy to use creator for assyst tags",
     "main": "index.js",
     "bin": "./dist/main.js",

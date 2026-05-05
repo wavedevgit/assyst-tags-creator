@@ -1,6 +1,6 @@
 {
     "name": "@happyenderman/assyst-tag-builder",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Builder for assyst tags (uses esbuild)",
     "main": "index.js",
     "bin": "./dist/main.js",
