@@ -1,6 +1,6 @@
 {
     "name": "@happyenderman/assyst-tag-builder",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Builder for assyst tags (uses esbuild)",
     "main": "index.js",
     "bin": "./dist/main.js",
@@ -16,7 +16,7 @@
     },
     "scripts": {
         "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js",
-        "publish": "npm run build && npm publish"
+        "publish:package": "npm run build && npm publish"
     },
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-builder#readme",
     "dependencies": {

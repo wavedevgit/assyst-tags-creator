@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js",
-        "publish": "npm run build && npm publish"
+        "publish:package": "npm run build && npm publish"
     },
     "keywords": [],
     "author": "wavedevgit",
