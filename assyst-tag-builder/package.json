@@ -3,9 +3,10 @@
     "version": "1.0.0",
     "description": "Builder for assyst tags (uses esbuild)",
     "main": "index.js",
-    "bin": {
-        "assyst-tag-builder": "./dist/main.js"
-    },
+    "bin": "./dist/main.js",
+    "files": [
+        "dist"
+    ],
     "keywords": [],
     "author": "wavedevgit",
     "license": "ISC",
@@ -13,9 +14,14 @@
     "bugs": {
         "url": "https://github.com/wavedevgit/assyst-tags-creator/issues"
     },
+    "scripts": {
+        "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js",
+        "publish": "npm run build && npm run publish"
+    },
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-builder#readme",
     "dependencies": {
-        "@rspack/core": "^2.0.1"
+        "@rspack/core": "^2.0.1",
+        "typescript": "^6.0.3"
     },
     "publishConfig": {
         "access": "public"

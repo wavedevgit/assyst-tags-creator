@@ -8,7 +8,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js"
+        "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js",
+        "publish": "npm run build && npm run publish"
     },
     "keywords": [],
     "author": "wavedevgit",
