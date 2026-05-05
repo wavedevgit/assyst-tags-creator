@@ -16,5 +16,8 @@
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-create#readme",
     "dependencies": {
         "inquirer": "^13.3.2"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

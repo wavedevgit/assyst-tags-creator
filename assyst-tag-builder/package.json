@@ -16,5 +16,8 @@
     "homepage": "https://github.com/wavedevgit/assyst-tags-creator/tree/main/assyst-tag-builder#readme",
     "dependencies": {
         "@rspack/core": "^2.0.1"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
