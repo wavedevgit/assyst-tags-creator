@@ -1,11 +1,9 @@
 {
     "name": "create-assyst-tag",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Easy to use creator for assyst tags",
     "main": "index.js",
-    "bin": {
-        "create-assyst-tag": "./dist/main.js"
-    },
+    "bin": "./dist/main.js",
     "scripts": {
         "build": "tsc && echo fixing shebang && node scripts/fix-shebang.js"
     },
