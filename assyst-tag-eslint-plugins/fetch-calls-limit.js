@@ -1,4 +1,9 @@
 const fetchLimitPlugin = {
+    meta: {
+        name: '@happyenderman/assyst-eslint-plugins',
+        version: '1.0.2',
+        namespace: '@happyenderman/assyst-eslint-plugins',
+    },
     rules: {
         'fetch-limit': {
             meta: {
