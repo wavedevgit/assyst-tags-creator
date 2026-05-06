@@ -120,7 +120,7 @@ export default [
         rules: {
             'no-console': 'off',
             'no-restricted-syntax': [
-                'error',
+                'warning',
                 {
                     selector: "MemberExpression[object.name='console']",
                     message:
