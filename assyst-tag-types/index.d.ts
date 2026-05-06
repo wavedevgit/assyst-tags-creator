@@ -1,7 +1,7 @@
 // types for assyst context
 
-import { DiscordClient, Message } from './discord';
-import { Fetch } from './fetch';
+import { DiscordClient, Message } from './discord/index.d.ts';
+import { Fetch } from './fetch.d.ts';
 
 declare global {
     /**

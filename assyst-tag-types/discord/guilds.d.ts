@@ -1,4 +1,4 @@
-import { User } from './users';
+import { User } from './users.d.ts';
 
 export interface GuildMember {
     roles: string[];

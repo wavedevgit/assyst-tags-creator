@@ -1,4 +1,4 @@
-import { PrimaryGuild } from './guilds';
+import { PrimaryGuild } from './guilds.d.ts';
 
 export interface User {
     id: string;

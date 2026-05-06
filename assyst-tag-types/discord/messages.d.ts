@@ -1,5 +1,5 @@
-import { GuildMember } from './guilds';
-import { User } from './users';
+import { GuildMember } from './guilds.d.ts';
+import { User } from './users.d.ts';
 
 export interface Message {
     id: string;
