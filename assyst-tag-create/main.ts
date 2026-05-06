@@ -83,6 +83,8 @@ async function main() {
                 esModuleInterop: true,
                 skipLibCheck: true,
                 outDir: 'dist',
+                lib: ['ES2020'],
+                types: ['@happyenderman/assyst-tag-types'],
             },
             include: ['src'],
         };
@@ -120,7 +122,7 @@ export default [
         rules: {
             'no-console': 'off',
             'no-restricted-syntax': [
-                'warning',
+                'warn',
                 {
                     selector: "MemberExpression[object.name='console']",
                     message:
@@ -128,7 +130,7 @@ export default [
                 },
             ],
             '@happyenderman/assyst-eslint-plugins/fetch-limit': [
-                'error',
+                'warn',
                 { max: 5 },
             ],
         },
@@ -139,11 +141,26 @@ export default [
         path.join(projectPath, 'eslint.config.js'),
         eslintConfig,
     );
+    // so vs code can show errros etc
+    await fs.mkdir(path.join(projectPath, '.vscode'), { recursive: true });
+    await fs.writeFile(
+        path.join(projectPath, '.vscode', 'settings.json'),
+        JSON.stringify(
+            {
+                'eslint.useFlatConfig': true,
+                'eslint.validate': ['javascript', 'typescript'],
+                'eslint.enable': true,
+            },
+            null,
+            2,
+        ),
+    );
 
     console.log('Installing dependencies...');
 
     const deps = [
-        '@happyenderman/assyst-types',
+        'eslint',
+        '@happyenderman/assyst-tag-types',
         '@happyenderman/assyst-eslint-plugins',
         '@happyenderman/assyst-tag-builder',
         useTagTemplates && '@happyenderman/assyst-tag-templates',
