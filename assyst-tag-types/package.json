@@ -1,6 +1,6 @@
 {
     "name": "@happyenderman/assyst-tag-types",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Types for assyst javascript tags execution context",
     "types": "index.d.ts",
     "keywords": [
